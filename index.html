@@ -3,106 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We Love Jahrreis!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .header {
-            position: absolute;
-            top: 20px;
-            font-size: 3rem;
-            font-weight: bold;
-        }
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-        }
-        .slides {
-            display: none;
-            width: 100%;
-            height: 100vh;
-        }
-        .active {
-            display: block;
-            animation: fade 1s ease;
-        }
-        @keyframes fade {
-            from {opacity: 0.4;}
-            to {opacity: 1;}
-        }
-        .arrow {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            padding: 16px;
-            font-size: 2rem;
-            color: white;
-            user-select: none;
-            transition: 0.3s;
-        }
-        .arrow:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .left {
-            left: 0;
-        }
-        .right {
-            right: 0;
-        }
-    </style>
+    <title>Bild-Upload</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="header">We Love Jahrreis!</div>
+<div class="upload-container">
+    <h2>Bilder hochladen</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="images" accept="image/*" multiple>
+        <button type="submit">Bilder hochladen</button>
+    </form>
+    <div class="preview" id="preview"></div>
+</div>
 
-    <div class="slideshow-container">
-        <img class="slides active" src="https://example.com/bild1.jpg" alt="Bild 1">
-        <img class="slides" src="https://example.com/bild2.jpg" alt="Bild 2">
-        <img class="slides" src="https://example.com/bild3.jpg" alt="Bild 3">
-
-        <a class="arrow left" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="arrow right" onclick="changeSlide(1)">&#10095;</a>
-    </div>
-
-    <script>
-        let currentIndex = 0;
-        let slides = document.getElementsByClassName("slides");
-        let slideInterval = setInterval(nextSlide, 7000);  // Automatischer Wechsel alle 7 Sekunden
-
-        function changeSlide(n) {
-            clearInterval(slideInterval);  // Automatischer Wechsel stoppen, wenn manuell gewechselt wird
-            showSlide(currentIndex += n);
-            slideInterval = setInterval(nextSlide, 7000);  // Automatischen Wechsel nach manuellem Wechsel wieder starten
-        }
-
-        function nextSlide() {
-            showSlide(currentIndex += 1);
-        }
-
-        function showSlide(n) {
-            if (n >= slides.length) { currentIndex = 0; }
-            if (n < 0) { currentIndex = slides.length - 1; }
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            slides[currentIndex].classList.add("active");
-        }
-    </script>
-
+<script src="script.js"></script>
 </body>
 </html>
