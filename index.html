@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bild-Upload</title>
+    <title>Bild-Anzeige</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="upload-container">
-    <h2>Bilder hochladen</h2>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="fileInput" name="images" accept="image/*" multiple>
-        <button type="submit">Bilder hochladen</button>
-    </form>
-    <div class="preview" id="preview"></div>
+<div class="gallery">
+    <h2>Bildergalerie</h2>
+    <div class="image-container">
+        <img src="images/bild_001.jpg" alt="Bild 1">
+        <img src="images/bild_002.jpg" alt="Bild 2">
+        <img src="images/bild_003.jpg" alt="Bild 3">
+        <!-- Füge hier weitere Bilder hinzu -->
+    </div>
 </div>
 
-<script src="script.js"></script>
 </body>
 </html>
