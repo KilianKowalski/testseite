@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einfaches Ballspiel</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #gameCanvas {
+            background-color: lightblue;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+<div id="ball"></div>
+
+<script>
+    const ball = document.getElementById('ball');
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let ballX = canvas.width / 2 - 15;
+    let ballY = canvas.height / 2 - 15;
+    let ballSpeed = 5;
+
+    let keys = {};
+
+    document.addEventListener('keydown', function (event) {
+        keys[event.key] = true;
+    });
+
+    document.addEventListener('keyup', function (event) {
+        keys[event.key] = false;
+    });
+
+    function updateBallPosition() {
+        if (keys['ArrowUp'] && ballY > 0) {
+            ballY -= ballSpeed;
+        }
+        if (keys['ArrowDown'] && ballY < canvas.height - 30) {
+            ballY += ballSpeed;
+        }
+        if (keys['ArrowLeft'] && ballX > 0) {
+            ballX -= ballSpeed;
+        }
+        if (keys['ArrowRight'] && ballX < canvas.width - 30) {
+            ballX += ballSpeed;
+        }
+        ball.style.left = ballX + 'px';
+        ball.style.top = ballY + 'px';
+    }
+
+    function gameLoop() {
+        updateBallPosition();
+        requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+</script>
+
+</body>
+</html>
